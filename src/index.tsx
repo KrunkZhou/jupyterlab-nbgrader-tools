@@ -16,6 +16,19 @@ const extension: JupyterFrontEndPlugin<void> = {
   ) => {
     console.log('JupyterLab extension jupyterlab-nbgrader-tools is activated!');
 
+  //   function formatMarkdownTablesInText(text: string): string {
+  //     function formatTable(table: string): string {
+  //         const lines = table.split('\n');
+  //         const rows = lines.map(line => line.split('|').map(cell => cell.trim()));
+  //         const colWidths = rows[0].map((_, i) => Math.max(...rows.map(row => row[i]?.length || 0)));
+  //         const formattedRows = rows.map(row => row.map((cell, i) => ` ${cell.padEnd(colWidths[i])} `));
+  //         return formattedRows.map(row => row.join('|')).join('\n');
+  //     }
+  
+  //     const tablePattern = /(?:[^\n]*\|[^\n]*\n)+/g;
+  //     return text.replace(tablePattern, table => formatTable(table));
+  // }
+
     // Nbgrader graded cells highlight
     // Idea from: https://discourse.jupyter.org/t/jupyterlab-4-iterating-over-all-cells-in-a-notebook/20033
     const labShell = app.shell as LabShell;
@@ -58,6 +71,24 @@ const extension: JupyterFrontEndPlugin<void> = {
           });
       }
     });
+
+    // labShell.currentChanged.connect(() => {
+    //   const notebook = app.shell.currentWidget as unknown as NotebookPanel;
+    //   if (notebook) {
+    //       notebook.revealed.then(() => {
+    //         if (notebook.content.model){
+    //           console.log('NOTEBOOK content: ', notebook.content)
+    //           console.log('NOTEBOOK widgets: ', notebook.content.widgets)
+    //           // const cellList = notebook.content.model.cells;
+    //           const widgetList = notebook.content.widgets;
+    //           for (let i = 0; i < widgetList.length; i++) {
+    //             console.log('DATA: ', widgetList[i])
+    //             // widgetList[i].node.textContent = "123"
+    //           }
+    //         }
+    //       });
+    //   }
+    // });
 
   }
 };
